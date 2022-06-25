@@ -16,38 +16,46 @@ function Header() {
     navigate("/login")
   }
 
+  const onLandingClick=()=>{
+    navigate("/")
+  }
+
   return (
     <>
       <Container
-        pt={0}
         m={0}
+        py="10px"
+        pl={0}
+        pr={0}
         style={{
           maxWidth: "100%",
-          border: "2px solid black",
-          justifyContent: "center",
+          display: "flex",
+          boxShadow:
+            "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
         }}
       >
-        <Grid my={10}>
-          <Grid.Col span={10} ml={0}>
-            <Text  weight={700}>socialNetwork</Text>
-          </Grid.Col>
-          <Grid.Col span={1} px={0} mx={0}>
-            <Button onClick={onLoginClick}>
-              <Center>
-                {" "}
-                <FaSignInAlt /> Login
-              </Center>
-            </Button>
-          </Grid.Col>
-          <Grid.Col span={1} px={0} mx={0}>
-            <Button onClick={onRegisterClick} leftIcon={<FaUser />}>
-              <Center> Register</Center>
-            </Button>
-          </Grid.Col>
-        </Grid>
+        <Container ml={0} style={{ justifyContent: "center" }}>
+          <Button
+            onClick={onLandingClick}
+            style={{ fontWeight: "700", backgroundColor: "#636363" }}
+          >
+            <Center> socialNetwork </Center>
+          </Button>
+        </Container>
+        <Container mr={"5px"} px={0} mx={0}>
+          <Button onClick={onLoginClick} leftIcon={<FaSignInAlt />}>
+            <Center> Login</Center>
+          </Button>
+        </Container>
+        <Container px={0} mx={0}>
+          <Button onClick={onRegisterClick} leftIcon={<FaUser />}>
+            <Center> Register</Center>
+          </Button>
+        </Container>
       </Container>
     </>
   );
 }
 
 export default Header;
+
