@@ -26,7 +26,7 @@ function Register() {
       <Center mt={40}>
         <Text style={{ fontWeight: "700", fontSize: "x-large" }}>Register</Text>
       </Center>
-      <Container style={{ width: "20%" }}>
+      <Container style={{ width: "20%" }} mt={50}>
         <TextInput
           onChange={onChange}
           name="name"
@@ -35,13 +35,13 @@ function Register() {
           size="sm"
           placeholder="Your name"
           styles={{
-            input: { backgroundColor: "#636363", border: "1px solid black" },
+            input: { backgroundColor: "white", border: "1px solid black" },
           }}
           label="Username"
           required
         ></TextInput>
       </Container>
-      <Container style={{ width: "20%" }}>
+      <Container style={{ width: "20%" }} mt={10}>
         <TextInput
           onChange={onChange}
           name="email"
@@ -50,13 +50,13 @@ function Register() {
           size="sm"
           placeholder="Your email"
           styles={{
-            input: { backgroundColor: "#636363", border: "1px solid black" },
+            input: { backgroundColor: "white", border: "1px solid black" },
           }}
           label="Email"
           required
         ></TextInput>
       </Container>
-      <Container style={{ width: "20%" }}>
+      <Container style={{ width: "20%" }} mt={10}>
         <TextInput
           onChange={onChange}
           name="password"
@@ -65,13 +65,13 @@ function Register() {
           size="sm"
           placeholder="Your password"
           styles={{
-            input: { backgroundColor: "#636363", border: "1px solid black" },
+            input: { backgroundColor: "white", border: "1px solid black" },
           }}
           label="Password"
           required
         ></TextInput>
       </Container>
-      <Container style={{ width: "20%" }}>
+      <Container style={{ width: "20%" }} mt={10}>
         <TextInput
           onChange={onChange}
           name="password2"
@@ -80,15 +80,15 @@ function Register() {
           size="sm"
           placeholder="Confirm password"
           styles={{
-            input: { backgroundColor: "#636363", border: "1px solid black" },
+            input: { backgroundColor: "white", border: "1px solid black" },
           }}
           label="Confirm password"
           required
         ></TextInput>
       </Container>
-      <Container>
+      <Center mt={20}>
         <Button onSubmit={onSubmit}>Submit</Button>
-      </Container>
+      </Center>
     </>
   );
 }

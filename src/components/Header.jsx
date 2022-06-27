@@ -1,24 +1,22 @@
 import { FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { Text, Grid, Center, Container,Button } from "@mantine/core";
+import { Text, Grid, Center, Container, Button } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 
-
 function Header() {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
+  const onRegisterClick = () => {
+    navigate("/register");
+  };
 
-  const onRegisterClick=()=>{
-    navigate("/register")
-  }
+  const onLoginClick = () => {
+    navigate("/login");
+  };
 
-  const onLoginClick =()=>{
-    navigate("/login")
-  }
-
-  const onLandingClick=()=>{
-    navigate("/")
-  }
+  const onLandingClick = () => {
+    navigate("/");
+  };
 
   return (
     <>
@@ -37,9 +35,12 @@ function Header() {
         <Container ml={0} style={{ justifyContent: "center" }}>
           <Button
             onClick={onLandingClick}
-            style={{ fontWeight: "700", backgroundColor: "#636363" }}
+            style={{ fontWeight: "700", backgroundColor: "white" }}
           >
-            <Center> socialNetwork </Center>
+            <Center>
+              {" "}
+              <Text color="black">socialNetwork</Text>
+            </Center>
           </Button>
         </Container>
         <Container mr={"5px"} px={0} mx={0}>
@@ -47,7 +48,7 @@ function Header() {
             <Center> Login</Center>
           </Button>
         </Container>
-        <Container px={0} mx={0}>
+        <Container pr={20} mx={0}>
           <Button onClick={onRegisterClick} leftIcon={<FaUser />}>
             <Center> Register</Center>
           </Button>
@@ -58,4 +59,3 @@ function Header() {
 }
 
 export default Header;
-
