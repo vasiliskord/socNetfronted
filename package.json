@@ -1,9 +1,11 @@
 {
   "name": "frontend",
   "version": "0.1.0",
+  "proxy": "http://localhost:5000/",
   "private": true,
   "dependencies": {
     "@mantine/core": "^4.2.10",
+    "@mantine/form": "^4.2.11",
     "@mantine/hooks": "^4.2.10",
     "@reduxjs/toolkit": "^1.8.2",
     "@testing-library/jest-dom": "^5.16.4",

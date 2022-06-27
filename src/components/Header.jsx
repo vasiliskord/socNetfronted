@@ -2,9 +2,13 @@ import { FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Text, Grid, Center, Container, Button } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
+import { logout, reset } from "../features/auth/authSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 function Header() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
 
   const onRegisterClick = () => {
     navigate("/register");
@@ -16,6 +20,12 @@ function Header() {
 
   const onLandingClick = () => {
     navigate("/");
+  };
+
+  const onLogoutClick = () => {
+    navigate("/");
+    dispatch(logout());
+    dispatch(reset());
   };
 
   return (
@@ -38,21 +48,30 @@ function Header() {
             style={{ fontWeight: "700", backgroundColor: "white" }}
           >
             <Center>
-              {" "}
               <Text color="black">socialNetwork</Text>
             </Center>
           </Button>
         </Container>
-        <Container mr={"5px"} px={0} mx={0}>
-          <Button onClick={onLoginClick} leftIcon={<FaSignInAlt />}>
-            <Center> Login</Center>
-          </Button>
-        </Container>
-        <Container pr={20} mx={0}>
-          <Button onClick={onRegisterClick} leftIcon={<FaUser />}>
-            <Center> Register</Center>
-          </Button>
-        </Container>
+        {user ? (
+          <Container mr={"5px"} px={0} mx={0}>
+            <Button onClick={onLogoutClick} leftIcon={<FaSignInAlt />}>
+              <Center> Logout</Center>
+            </Button>
+          </Container>
+        ) : (
+          <>
+            <Container mr={"5px"} px={0} mx={0}>
+              <Button onClick={onLoginClick} leftIcon={<FaSignInAlt />}>
+                <Center> Login</Center>
+              </Button>
+            </Container>
+            <Container pr={20} mx={0}>
+              <Button onClick={onRegisterClick} leftIcon={<FaUser />}>
+                <Center> Register</Center>
+              </Button>
+            </Container>
+          </>
+        )}
       </Container>
     </>
   );
