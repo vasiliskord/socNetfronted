@@ -4,11 +4,12 @@ import { Text, Grid, Center, Container, Button } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import { logout, reset } from "../features/auth/authSlice";
 import { useSelector, useDispatch } from "react-redux";
+import Spinner from "./Spinner";
 
 function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
+  const { user,isLoading } = useSelector((state) => state.auth);
 
   const onRegisterClick = () => {
     navigate("/register");
@@ -23,10 +24,16 @@ function Header() {
   };
 
   const onLogoutClick = () => {
-    navigate("/");
     dispatch(logout());
     dispatch(reset());
+    setTimeout(() => {
+    navigate("/");
+    }, 9000);
   };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>
