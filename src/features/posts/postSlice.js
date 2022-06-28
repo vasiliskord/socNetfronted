@@ -80,73 +80,78 @@ export const deletePost = createAsyncThunk(
 );
 
 export const postSlice = createSlice({
-    name: "post",
-    initialState,
-    reducers: {
-        reset: (state) =>  initialState
-    },
-    extraReducers: (builder) => {
-        builder
-            .addCase(createPost.pending, (state) => {
-                state.isLoading = true;
-            }).addCase(createPost.fulfilled, (state, action) => {
-                state.posts.push(action.payload);
-                state.isLoading = false;
-                state.isSuccess = true;
-                state.message = "Post created successfully";
-            }).addCase(createPost.rejected, (state, action) => {
-                state.isLoading = false;
-                state.isError = true;
-                state.message = action.payload;
-            }).addCase(getPosts.pending, (state) => {
-                state.isLoading = true;
-            }).addCase(getPosts.fulfilled, (state, action) => {
-                state.posts = action.payload;
-                state.isLoading = false;
-                state.isSuccess = true;
-                state.message = "Posts fetched successfully";
-            }).addCase(getPosts.rejected, (state, action) => {
-                state.isLoading = false;
-                state.isError = true;
-                state.message = action.payload;
-            }).addCase(editPost.pending, (state) => {
-                state.isLoading = true;
-            }).addCase(editPost.fulfilled, (state, action) => {
-                state.posts = state.posts.map((post) => {
-                    if (post._id === action.payload._id) {
-                        return action.payload;
-                    }
-                    return post;
-                }
-                );
-                state.isLoading = false;
-                state.isSuccess = true;
-                state.message = "Post edited successfully";
-            }).addCase(editPost.rejected, (state, action) => {
-                state.isLoading = false;
-                state.isError = true;
-                state.message = action.payload;
-            }).addCase(deletePost.pending, (state) => {
-                state.isLoading = true;
-            }).addCase(deletePost.fulfilled, (state, action)=>{
-
-                state.posts = state.posts.filter((post) => {
-                    return post._id !== action.payload;
-                }
-                );
-                state.isLoading = false;
-                state.isSuccess = true;
-                state.message = "Post deleted successfully";
-            }
-            ).addCase(deletePost.rejected, (state, action) => {
-                state.isLoading = false;
-                state.isError = true;
-                state.message = action.payload;
-            }
-            );
-    }
+  name: "post",
+  initialState,
+  reducers: {
+    reset: (state) => initialState,
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(createPost.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createPost.fulfilled, (state, action) => {
+        state.posts.push(action.payload);
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = "Post created successfully";
+      })
+      .addCase(createPost.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(getPosts.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getPosts.fulfilled, (state, action) => {
+        state.posts = action.payload;
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = "Posts fetched successfully";
+      })
+      .addCase(getPosts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(editPost.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(editPost.fulfilled, (state, action) => {
+        state.posts = state.posts.map((post) => {
+          if (post._id === action.payload._id) {
+            return action.payload;
+          }
+          return post;
+        });
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = "Post edited successfully";
+      })
+      .addCase(editPost.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(deletePost.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deletePost.fulfilled, (state, action) => {
+        state.posts = state.posts.filter((post) => {
+          return post._id !== action.payload;
+        });
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = "Post deleted successfully";
+      })
+      .addCase(deletePost.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      });
+  },
 });
-
 
 export const { reset } = postSlice.actions;
 export default postSlice.reducer;
