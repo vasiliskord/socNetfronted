@@ -28,7 +28,6 @@ function Login() {
       navigate("/");
     }
 
-    dispatch(reset());
   }, [user, isError, isSuccess, navigate, dispatch]);
 
   const onChange = (e) => {

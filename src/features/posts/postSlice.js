@@ -11,7 +11,7 @@ const initialState = {
 
 //create post
 export const createPost = createAsyncThunk(
-  "posts/create",
+  "post/create",
   async (postData, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
@@ -43,7 +43,7 @@ export const getPosts = createAsyncThunk("posts/get", async (_, thunkAPI) => {
 
 //edit post
 export const editPost = createAsyncThunk(
-  "posts/edit",
+  "post/edit",
   async (postData, id, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
@@ -62,7 +62,7 @@ export const editPost = createAsyncThunk(
 
 //delete post
 export const deletePost = createAsyncThunk(
-  "posts/delete",
+  "post/delete",
   async (id, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
@@ -108,7 +108,6 @@ export const postSlice = createSlice({
         state.posts = action.payload;
         state.isLoading = false;
         state.isSuccess = true;
-        state.message = "Posts fetched successfully";
       })
       .addCase(getPosts.rejected, (state, action) => {
         state.isLoading = false;

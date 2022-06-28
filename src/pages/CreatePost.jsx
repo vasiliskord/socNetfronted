@@ -31,14 +31,13 @@ function CreatePost() {
 
   useEffect(() => {
     if(!user) {
-        navigate("/login");
-        toast.error("You must be logged in to create a post");
+        toast.error(message);
+        navigate("/login")
     }
     if (isError) {
       toast.error(message);
     }
     if (isSuccess) {
-      toast.success(message);
       navigate("/");
     }
     dispatch(reset());
