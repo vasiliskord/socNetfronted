@@ -37,9 +37,7 @@ function CreatePost() {
     if (isError) {
       toast.error(message);
     }
-    if (isSuccess) {
-      navigate("/");
-    }
+
     dispatch(reset());
   }, [isError, isSuccess, message, navigate, dispatch, user]);
 
@@ -50,6 +48,7 @@ function CreatePost() {
       title: "",
       content: "",
     });
+    navigate("/");
   };
 
   const onChange = (e) => {

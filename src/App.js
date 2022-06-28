@@ -8,6 +8,7 @@ import { Center, Container } from "@mantine/core";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSelector } from "react-redux";
+import PostId from "./components/PostId";
 
 function App() {
 

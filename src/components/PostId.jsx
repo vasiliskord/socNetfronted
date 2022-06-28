@@ -1,10 +1,10 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { deletePost } from "../features/posts/postSlice";
-import { Container, Text, Button } from "@mantine/core";
-import {useNavigate} from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Center, Container, Text } from "@mantine/core";
 
-function PostItem({ post}) {
+function PostId({post}) {
+
 
   return (
     <Container
@@ -24,16 +24,18 @@ function PostItem({ post}) {
       }}
     >
       <Container style={{ padding: 0 }}>
-        <Text size="xs">{new Date(post.createdAt).toLocaleDateString("en-US")}</Text>
+        <Text size="xs">
+          {new Date(post.createdAt).toLocaleDateString("en-US")}
+        </Text>
       </Container>
       <Text
         style={{ fontSize: "x-large", fontWeight: "600", marginBottom: "10px" }}
       >
         {post.title}
       </Text>
-      <Text style={{display:"inline-block",maxWidth:"50ch",overflow:"hidden",whiteSpace:"nowrap",textOverflow:"ellipsis"}}>{post.content}</Text>
+      <Text>{post.content}</Text>
     </Container>
   );
 }
 
-export default PostItem;
+export default PostId;

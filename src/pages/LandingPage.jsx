@@ -12,6 +12,7 @@ function LandingPage() {
   const { posts, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.posts
   );
+  const { user } = useSelector((state) => state.auth);
 
   const navigate = useNavigate();
   const dispatch = useDispatch((state) => state.auth);
@@ -20,16 +21,23 @@ function LandingPage() {
     if (isError) {
       toast.error(message);
     }
-
     dispatch(getPosts());
-  }, [isError, message, dispatch]);
+
+    return () => {
+      dispatch(reset());
+    };
+  }, [isError, message, dispatch, navigate]);
 
   if (isLoading) {
     return <Spinner />;
   }
 
-  const onSubmitPost = () => {
-    navigate("/createpost");
+  const onClick = () => {
+    if (user) {
+      navigate("/createpost");
+    } else {
+      toast.error("You must be logged in to create a post");
+    }
   };
 
   return (
@@ -47,7 +55,7 @@ function LandingPage() {
           paddingBottom: "0px",
         }}
       >
-        <Button onClick={onSubmitPost}>
+        <Button onClick={onClick}>
           <Center>Submit a post</Center>
         </Button>
       </Container>
@@ -59,6 +67,7 @@ function LandingPage() {
           maxWidth: "900",
           backgroundColor: "white",
           marginTop: "20px",
+          marginBottom: "50px",
           height: "100%",
           padding: "20px",
           boxShadow:
@@ -69,7 +78,7 @@ function LandingPage() {
           <>
             <Container>
               {posts.map((post) => {
-                return <PostItem key={post._id} post={post} />;
+                return <PostItem key={post._id}  post={post} />;
               })}
             </Container>
           </>
