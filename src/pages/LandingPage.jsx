@@ -78,7 +78,7 @@ function LandingPage() {
           <>
             <Container>
               {posts.map((post) => {
-                return <PostItem key={post._id}  post={post} />;
+                return <PostItem key={post._id}   post={post} />;
               })}
             </Container>
           </>
