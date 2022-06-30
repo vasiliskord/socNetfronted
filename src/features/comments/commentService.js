@@ -6,7 +6,7 @@ const API_URL = `/api/posts/62bb1c185bc8edee39332439/comments/`;
 
 //create comment
 
-const createComment = async (postId, commentData, token) => {
+const createComment = async ( commentData, token) => {
   const response = await axios.post(API_URL , commentData, {
     headers: {
       Authorization: `Bearer ${token}`

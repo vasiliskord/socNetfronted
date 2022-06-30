@@ -44,6 +44,7 @@ function CommentForm() {
     setCommentData({
       value: "",
     });
+    console.log(comments);
   };
 
   const onChange = (e) => {
@@ -56,11 +57,11 @@ function CommentForm() {
   return (
     <>
       <Container mt={50}>
+        <Center>
+          <Text>Comment Section</Text>
+        </Center>
         <form onSubmit={onSubmit}>
-          <Center>
-            <Text>Comment Section</Text>
-          </Center>
-          <Textarea
+          <TextInput
             name="value"
             type="value"
             value={value}
