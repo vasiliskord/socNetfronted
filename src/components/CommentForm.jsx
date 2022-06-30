@@ -13,7 +13,7 @@ import {
   Center,
 } from "@mantine/core";
 
-function CommentForm() {
+function CommentForm({ post }) {
   const [commentData, setCommentData] = useState({
     value: "",
   });
@@ -40,11 +40,10 @@ function CommentForm() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(createComment({ value }));
+    dispatch(createComment({value}));
     setCommentData({
       value: "",
     });
-    console.log(comments);
   };
 
   const onChange = (e) => {

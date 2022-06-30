@@ -27,7 +27,6 @@ export const getCommentsByPostId = createAsyncThunk(
   }
 );
 
-
 //create comment to post
 export const createComment = createAsyncThunk(
   "post/createComment",
@@ -46,6 +45,8 @@ export const createComment = createAsyncThunk(
     }
   }
 );
+
+
 
 //get comment by id
 export const getCommentById = createAsyncThunk(
@@ -208,7 +209,7 @@ export const commentSlice = createSlice({
       })
       .addCase(getCommentsByPostId.pending, (state) => {
         state.isLoading = true;
-      } )
+      })
       .addCase(getCommentsByPostId.fulfilled, (state, action) => {
         state.comment = action.payload;
         state.isLoading = false;
@@ -218,7 +219,7 @@ export const commentSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-      })
+      });
   },
 });
 
