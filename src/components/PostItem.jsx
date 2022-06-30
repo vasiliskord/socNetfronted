@@ -3,21 +3,20 @@ import { useDispatch } from "react-redux";
 import { deletePost } from "../features/posts/postSlice";
 import { Container, Text, Button } from "@mantine/core";
 import {useNavigate} from "react-router-dom";
-import {useParams} from "react-router-dom";
-import useGetPost from "./useGetPost";
-
+import { useSelector } from "react-redux";
+import Spinner from "./Spinner";
 
 
 function PostItem({ post}) {
 
-
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
 
   const handleClick = ()=>{
     navigate(`/post/${post._id}`)
+    
   }
+
   return (
     <Container
       onClick={handleClick}

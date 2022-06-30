@@ -79,6 +79,7 @@ export const deletePost = createAsyncThunk(
   }
 );
 
+
 export const postSlice = createSlice({
   name: "post",
   initialState,
@@ -148,7 +149,8 @@ export const postSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-      });
+      })
+
   },
 });
 

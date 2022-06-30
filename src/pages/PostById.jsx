@@ -1,25 +1,21 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import useGetPost from '../components/useGetPost'
-import {Container,Text} from "@mantine/core"
-import { useEffect } from 'react';
-
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import useGetPost from "../components/useGetPost";
+import { Container, Text } from "@mantine/core";
+import { useEffect } from "react";
+import CommentForm from "../components/CommentForm";
 
 function PostById() {
-    //get post id from url
-    const { id } = useParams();
-    //get post from store
-    const { status, data } = useGetPost(id);
+  //get post id from url
+  const { id } = useParams();
+  //get post from store
+  const { status, data } = useGetPost(id);
 
-  return (
-    <>
-      {data&&<GetPost post={data}/>}
-    </>
-  )
+  return <>{data && <GetPost post={data} />}</>;
 }
 
-function GetPost({post}){
+function GetPost({ post }) {
   return (
     <>
       <Container
@@ -52,14 +48,11 @@ function GetPost({post}){
         >
           {post.title}
         </Text>
-        <Text
-          
-        >
-          {post.content}
-        </Text>
+        <Text>{post.content}</Text>
+      <CommentForm key={post._id}  post={post} />
       </Container>
     </>
   );
 }
 
-export default PostById
+export default PostById;

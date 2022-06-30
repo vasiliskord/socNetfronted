@@ -37,5 +37,8 @@ const deletePost = async (postId,token) => {
     return response.data;
 }
 
-const postService = { createPost, getPosts, editPost, deletePost };
+
+
+
+const postService = { createPost, getPosts, editPost, deletePost};
 export default postService;
