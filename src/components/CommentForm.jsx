@@ -58,18 +58,29 @@ function CommentForm() {
     <>
       <Container mt={50}>
         <Center>
-          <Text>Comment Section</Text>
+          <Text style={{ fontSize: "large", fontWeight: "700" }}>
+            Comment Section
+          </Text>
         </Center>
-        <form onSubmit={onSubmit}>
-          <TextInput
-            name="value"
-            type="value"
-            value={value}
-            placeholder="comment"
-            onChange={onChange}
-          />
-          <Button type="submit">Submit</Button>
-        </form>
+        <Container mt={30}>
+          <form onSubmit={onSubmit}>
+            <Textarea
+              name="value"
+              type="value"
+              value={value}
+              placeholder="comment"
+              onChange={onChange}
+            />
+            <Container
+              display="flex"
+              justifyContent="center"
+              mt={20}
+              style={{ maxWidth: "100px" }}
+            >
+              <Button type="submit">Submit</Button>
+            </Container>
+          </form>
+        </Container>
       </Container>
     </>
   );

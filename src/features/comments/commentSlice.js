@@ -2,14 +2,31 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import commentService from "./commentService";
 
 const initialState = {
-  comments: [],
+  comment: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
   message: "",
 };
 
-//get post id
+//get all comments from post id
+export const getCommentsByPostId = createAsyncThunk(
+  "comment/getCommentsByPostId",
+  async (postId, thunkAPI) => {
+    try {
+      return await commentService.getCommentsByPostId(postId);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 
 //create comment to post
 export const createComment = createAsyncThunk(
@@ -85,8 +102,23 @@ export const getReplyComments = createAsyncThunk(
   }
 );
 
-
-
+//get all comments
+export const getComments = createAsyncThunk(
+  "post/getComments",
+  async (_, thunkAPI) => {
+    try {
+      return await commentService.getComments();
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 
 export const commentSlice = createSlice({
   name: "comment",
@@ -100,13 +132,26 @@ export const commentSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(createComment.fulfilled, (state, action) => {
-        state.comments.push(action.payload);
+        state.comment.push(action.payload);
         state.isLoading = false;
         state.isSuccess = true;
         state.message = "Comment created successfully";
-        
       })
       .addCase(createComment.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(getComments.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getComments.fulfilled, (state, action) => {
+        state.comment = action.payload;
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = "Comments fetched successfully";
+      })
+      .addCase(getComments.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
@@ -115,7 +160,7 @@ export const commentSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getCommentById.fulfilled, (state, action) => {
-        state.comments = action.payload;
+        state.comment = action.payload;
         state.isLoading = false;
         state.isSuccess = true;
       })
@@ -141,7 +186,7 @@ export const commentSlice = createSlice({
         });
         state.isLoading = false;
         state.isSuccess = true;
-        state.message = "Reply created successfully";
+        state.message = action.payload;
       })
       .addCase(createReplyComment.rejected, (state, action) => {
         state.isLoading = false;
@@ -160,7 +205,20 @@ export const commentSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-      });
+      })
+      .addCase(getCommentsByPostId.pending, (state) => {
+        state.isLoading = true;
+      } )
+      .addCase(getCommentsByPostId.fulfilled, (state, action) => {
+        state.comment = action.payload;
+        state.isLoading = false;
+        state.isSuccess = true;
+      })
+      .addCase(getCommentsByPostId.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
   },
 });
 

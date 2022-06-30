@@ -5,6 +5,7 @@ import useGetPost from "../components/useGetPost";
 import { Container, Text } from "@mantine/core";
 import { useEffect } from "react";
 import CommentForm from "../components/CommentForm";
+import CommentItem from "../components/CommentItem";
 
 function PostById() {
   //get post id from url
@@ -49,7 +50,8 @@ function GetPost({ post }) {
           {post.title}
         </Text>
         <Text>{post.content}</Text>
-      <CommentForm key={post._id}  post={post} />
+        <CommentForm key={post._id} post={post} />
+        <CommentItem  post={post} />
       </Container>
     </>
   );
