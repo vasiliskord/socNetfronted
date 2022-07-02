@@ -25,7 +25,7 @@ function CommentForm({ post }) {
   );
 
   const { value } = commentData;
-  const dispatch = useDispatch();
+  const dispatch = useDispatch((state)=>state.comments);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,7 +40,7 @@ function CommentForm({ post }) {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(createComment({value}));
+    dispatch(createComment({value,postId:post._id}));
     setCommentData({
       value: "",
     });

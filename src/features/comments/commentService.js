@@ -19,7 +19,7 @@ const getCommentsByPostId = async (postId) => {
 
 const createComment = async (commentData, token) => {
   const response = await axios.post(
-    `/api/posts/62bb1c185bc8edee39332439/comments/`,
+    `/api/posts/${commentData.postId}/comments/`,
     commentData,
     {
       headers: {
