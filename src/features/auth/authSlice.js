@@ -46,6 +46,8 @@ export const logout = createAsyncThunk("/auth/logout", async () => {
   await authService;
 });
 
+
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -93,7 +95,6 @@ export const authSlice = createSlice({
       .addCase(logout.pending, (state, action) => {
         state.isLoading = true;
       })
-
   },
 });
 

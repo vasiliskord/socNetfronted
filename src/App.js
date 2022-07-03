@@ -14,7 +14,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PostById from "./pages/PostById";
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
-import Profile from "./pages/Profile";
+import ProfileById from "./pages/ProfileById";
 
 const queryClient = new QueryClient();
 function App() {
@@ -29,7 +29,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/post/:id" element={<PostById />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile/:id" element={<ProfileById />} />
           </Routes>
         </Router>
         <ToastContainer />

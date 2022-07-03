@@ -28,6 +28,8 @@ const login = async (userData) => {
   return response.data;
 };
 
+
+
 const authService = { register, logout, login };
 
 export default authService;
