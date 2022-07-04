@@ -3,7 +3,7 @@ const API_URL = "/api/users/";
 
 //follow user
 const follow = async (userData, token) => {
-  const response = await axios.post(
+  const response = await axios.put(
     API_URL + userData.userId + "/follow",
     userData,
     {

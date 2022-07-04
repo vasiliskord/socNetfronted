@@ -32,14 +32,14 @@ function ProfileForm({user}) {
     }, [dispatch, loggedInUser]);
 
     const onClick = () => {
-        console.log(follower_count)
-        dispatch(follow({follower_count,follwing,followers,userId:user.id}))
+        dispatch(follow({follower_count,follwing,followers,userId:user._id}))
         setProfileData({
-            follower_count:0,
+            follower_count:follower_count+1,
             name: "",
             follwing: [""],
             followers: [""],
         })
+        console.log(profileData);
     }
 
 
